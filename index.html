@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/index.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Translator Extension</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="translateFrom" class="dropdown">
+            <div>
+                <h2>LANGUAGE OF THE MEETING</h2>
+                <p class="selected">English</p>
+            </div>
+            <div class="icon"></div>
+            <ul>
+                <div class="list-container">
+                    <div class="input-container">
+                        <input type="search" class="searchInput">
+                        <div class="search-icon"></div>
+                    </div>
+                    <li>English</li>
+                    <li>German</li>
+                    <li>Hungarian</li>
+                    <li>Spanish</li>
+                </div>
+            </ul>
+        </div>
+        <div id="switcher" class="switcher">
+            <div class="icon"></div>
+        </div>
+        <div id="translateTo" class="dropdown">
+            <div>
+                <h2>TARGET LANGUAGE</h2>
+                <p class="selected">German</p>
+            </div>
+            <div class="icon"></div>
+            <ul>
+                <div class="list-container">
+                    <div class="input-container">
+                        <input type="search" class="searchInput">
+                        <div class="search-icon"></div>
+                    </div>
+                    <li>English</li>
+                    <li>German</li>
+                    <li>Hungarian</li>
+                    <li>Spanish</li>
+                </div>
+            </ul>
+        </div>
+</body>
+<script>
+    $('#switcher').click(function () {
+        $(this).toggleClass('active')
+    })
+
+
+    $('.dropdown').each(function (i) {
+        const $dropdown = $(this);
+        const $searchInput = $dropdown.find('.searchInput');
+        const $listItems = $dropdown.find('ul .list-container li');
+        const $selected = $dropdown.find('.selected');
+
+        $listItems.click(function () {
+            $selected.text($(this).text());
+            $searchInput.val('');
+            setTimeout(() => {
+                $listItems.each(function () {
+                    $(this).show()
+                })
+            }, 150)
+            
+        });
+
+        $searchInput.on('input', function () {
+            const searchText = $(this).val().toLowerCase();
+
+            $listItems.each(function () {
+                const listItemText = $(this).text().toLowerCase();
+                if (listItemText.includes(searchText)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        $(document).click(function (e) {
+            if (!$dropdown.is(e.target) && $dropdown.has(e.target).length === 0) {
+                $dropdown.removeClass('active');
+                $searchInput.val('');
+                setTimeout(() => {
+                    $listItems.each(function () {
+                        $('.list-container').scrollTop(0);
+                        $(this).show()
+                    })
+                }, 150)
+            }
+        });
+    });
+
+    $('.dropdown').click(function (e) {
+        if (e.target.className !== 'searchInput') {
+            $(this).toggleClass('active');
+        }
+    })
+</script>
+
+</html>

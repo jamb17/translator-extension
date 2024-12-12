@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap')
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+.container
+    background: #F7F7F7
+    padding: 16px
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    gap: 12px
+    font-family: "Inter", sans-serif
+    display: flex
+    align-items: flex-start
+    .dropdown:nth-child(1)
+        ul
+            z-index: 2
+    .dropdown
+        width: 100%
+        padding: 12px
+        border-radius: 16px
+        background: white
+        display: flex
+        justify-content: space-between
+        align-items: center
+        border: 1px solid #EAEAEA
+        cursor: pointer
+        position: relative
+        h2
+            margin-bottom: 6px
+            font-size: 12px
+            font-weight: 500
+            line-height: 16px
+            color: #999999
+            min-width: 202px
+        p,li, input[type="search"]
+            font-family: "Inter"
+            width: 100%
+            font-weight: 500
+            font-size: 20px
+            option
+                p
+                    background: white
+        ul
+            border-radius: 16px
+            background: white
+            border: 1px solid #EAEAEA
+            cursor: pointer
+            width: 100%
+            position: absolute
+            top: 76px
+            left: 0
+            display: flex
+            flex-direction: column
+            overflow: hidden
+            opacity: 0
+            transform: translateY(-5px)
+            transition: all 0.14s ease-in
+            z-index: 1
+            pointer-events: none
+            .input-container
+                padding: 12px
+                display: flex
+                justify-content: space-between
+                gap: 4px
+                align-items: center
+                position: relative
+                input[type="search"]
+                    padding: 12px
+                    border-radius: 16px
+                    width: 100%
+                    outline: none
+                    border: none
+                    appearance: none
+                    font-size: 17px
+                    border: 1px solid #EAEAEA
+                input[type="search"]::-webkit-search-decoration,
+                input[type="search"]::-webkit-search-cancel-button,
+                input[type="search"]::-webkit-search-results-button,
+                input[type="search"]::-webkit-search-results-decoration
+                    display: none
+                .search-icon
+                    position: absolute
+                    right: 24px
+                    width: 24px
+                    height: 24px
+                    background-position: center
+                    background-size: cover
+                    background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21L17.5001 17.5M20 11.5C20 16.1944 16.1944 20 11.5 20C6.80558 20 3 16.1944 3 11.5C3 6.80558 6.80558 3 11.5 3C16.1944 3 20 6.80558 20 11.5Z" stroke="%23E0E0E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+            .list-container
+                max-height: 213px
+                overflow: auto
+            .list-container::-webkit-scrollbar
+                width: 4px
+            .list-container::-webkit-scrollbar-thumb
+                background: #E0E0E0
+                border-radius: 990px
+            li
+                padding: 12px
+                list-style: none
+                transition: background 0.2s ease-in-out
+            li:hover
+                background: #EAEAEA
+        .icon
+            width: 16px
+            height: 16px
+            transition: all 0.14s ease-in
+            background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.52827 5.53244C3.96733 5.09338 4.5 5.50391 8 5.50391C11.5 5.50391 12.0538 5.11517 12.4711 5.53244C12.7314 5.79279 12.7314 6.2149 12.4711 6.47525L8.47108 10.4752C8.21073 10.7356 7.78862 10.7356 7.52827 10.4752L3.52827 6.47525C3.26792 6.2149 3.26792 5.79279 3.52827 5.53244Z" fill="black"/></svg>')
+    .dropdown.active
+        ul
+            pointer-events: all
+            opacity: 1
+            transform: translateY(0)
+        .icon
+            transform: rotate(180deg)
+    .switcher
+        width: 88px
+        height: 44px
+        padding: 4px
+        background: #E0E0E0
+        border-radius: 32px
+        cursor: pointer
+        display: flex
+        transition: background 0.3s ease-in-out
+        .icon
+            width: 36px
+            height: 36px
+            transition: all 0.3s ease-in-out
+            background-image: url('data:image/svg+xml,<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="18" fill="white"/><path d="M15.7497 24C15.5509 23.9973 15.3603 23.9204 15.2154 23.7843L9.96535 18.5343C9.84575 18.3886 9.78464 18.2036 9.79388 18.0153C9.80313 17.827 9.88208 17.6489 10.0154 17.5156C10.1487 17.3823 10.3268 17.3034 10.5151 17.2941C10.7034 17.2849 10.8884 17.346 11.0341 17.4656L15.7497 22.1906L25.7154 12.2156C25.8611 12.096 26.0461 12.0349 26.2344 12.0441C26.4226 12.0534 26.6008 12.1323 26.7341 12.2656C26.8674 12.3989 26.9463 12.577 26.9556 12.7653C26.9648 12.9536 26.9037 13.1386 26.7841 13.2843L16.2841 23.7843C16.1391 23.9204 15.9485 23.9973 15.7497 24Z" fill="%23E0E0E0" stroke="%23E0E0E0"/></svg>')
+    .switcher.active
+        background: #C5E764
+        .icon
+            transform: translateX(44px)
+            background-image: url('data:image/svg+xml,<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="18" fill="white"/><path d="M15.7497 24C15.5509 23.9973 15.3603 23.9204 15.2154 23.7843L9.96535 18.5343C9.84575 18.3886 9.78464 18.2036 9.79388 18.0153C9.80313 17.827 9.88208 17.6489 10.0154 17.5156C10.1487 17.3823 10.3268 17.3034 10.5151 17.2941C10.7034 17.2849 10.8884 17.346 11.0341 17.4656L15.7497 22.1906L25.7154 12.2156C25.8611 12.096 26.0461 12.0349 26.2344 12.0441C26.4226 12.0534 26.6008 12.1323 26.7341 12.2656C26.8674 12.3989 26.9463 12.577 26.9556 12.7653C26.9648 12.9536 26.9037 13.1386 26.7841 13.2843L16.2841 23.7843C16.1391 23.9204 15.9485 23.9973 15.7497 24Z" fill="black" stroke="black"/></svg>')
